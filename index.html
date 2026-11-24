@@ -162,7 +162,20 @@ section{max-width:1100px;margin:auto;padding:50px 18px 20px}
 .photos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .shot{border:2px dashed #cfc3a5;border-radius:14px;aspect-ratio:4/3;display:grid;place-items:center;text-align:center;font-weight:800;color:var(--muted);position:relative;overflow:hidden;background:#faf7ef}
 .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.shot input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.shot{display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:12px;aspect-ratio:auto!important;min-height:230px}
+.shot .lbl{position:relative;z-index:1;background:rgba(255,255,255,.85);padding:4px 10px;border-radius:8px}
+.shot .acts{position:relative;z-index:1;display:flex;flex-direction:column;gap:8px;width:100%}
+.shot .acts button,.shot .acts label{width:100%;text-align:center;border:0;margin:0;font-weight:900;font-size:15px;padding:12px 14px;border-radius:12px;cursor:pointer;display:inline-block}
+.shot .cam{background:var(--red);color:#fff}
+.shot .gal{background:var(--ink);color:#fff}
+.shot input{display:none}
+.form label.chk{display:flex;margin:6px 0;font-size:15px}
+.camv{position:fixed;inset:0;background:#000;z-index:300;display:none;flex-direction:column}
+.camv.on{display:flex}
+.camv video{flex:1;width:100%;object-fit:cover;min-height:0}
+.camv .bar{display:flex;justify-content:space-around;align-items:center;padding:18px;background:#000}
+.camv .snap{width:78px;height:78px;border-radius:50%;border:6px solid #fff;background:var(--red)}
+.camv .bar button.tx{background:none;border:2px solid #fff;color:#fff;font-weight:800;padding:10px 16px;border-radius:24px}
 .score{display:flex;align-items:center;gap:14px;margin:14px 0}
 .score b{font-family:'Barlow Condensed';font-size:54px;color:var(--red)}
 .btn{display:block;width:100%;border:0;font-weight:900;font-size:17px;padding:15px;border-radius:14px;margin-top:10px}
@@ -291,8 +304,8 @@ footer b{color:#fff}
     <div id="chkList"></div>
     <div class="score"><b id="score">0/10</b><span id="scoreTxt" style="font-weight:700"></span></div>
     <div class="photos">
-      <div class="shot"><span data-i="before">Foto ANTES</span><img id="imgA" hidden alt=""><input type="file" accept="image/*" capture="environment" data-t="imgA"></div>
-      <div class="shot"><span data-i="after">Foto DESPUÉS</span><img id="imgD" hidden alt=""><input type="file" accept="image/*" capture="environment" data-t="imgD"></div>
+      <div class="shot"><img id="imgA" hidden alt=""><span class="lbl" data-i="before">Foto ANTES</span><div class="acts"><button type="button" class="cam" data-cam="imgA" data-i="takePh">Tomar foto</button><label class="gal"><span data-i="gallery">Galería</span><input type="file" accept="image/*" data-t="imgA"></label></div></div>
+      <div class="shot"><img id="imgD" hidden alt=""><span class="lbl" data-i="after">Foto DESPUÉS</span><div class="acts"><button type="button" class="cam" data-cam="imgD" data-i="takePh">Tomar foto</button><label class="gal"><span data-i="gallery">Galería</span><input type="file" accept="image/*" data-t="imgD"></label></div></div>
     </div>
     <label data-i="fNotes">Novedades (agotados, averías, competencia)</label>
     <textarea id="fNotas" rows="3" maxlength="400"></textarea>
@@ -300,7 +313,7 @@ footer b{color:#fff}
     <input type="tel" id="fSup" value="3117700431" maxlength="13">
     <button class="btn wa" id="btnWa" data-i="send">Enviar reporte por WhatsApp</button>
     <button class="btn sec" id="btnReset" data-i="new">Nueva visita</button>
-    <p class="priv" data-i="priv">Las fotos y los datos se quedan solo en este celular. Las fotos se adjuntan a mano en el chat de WhatsApp. Tratamiento de datos según la Ley 1581 de 2012.</p>
+    <p class="priv" data-i="priv">Las fotos y los datos se quedan solo en este celular. En el celular el reporte sale con las fotos incluidas. Tratamiento de datos según la Ley 1581 de 2012.</p>
     <div class="hist" id="hist"></div>
   </div>
 </section>
@@ -326,13 +339,14 @@ footer b{color:#fff}
   <p style="margin-top:6px" id="clock"></p>
 </footer>
 
+<div class="camv" id="camv"><video id="camVid" autoplay playsinline muted></video><div class="bar"><button class="tx" id="camX" data-i="cancel">Cancelar</button><button class="snap" id="camSnap" aria-label="Tomar"></button><button class="tx" id="camFlip" data-i="flip">Girar</button></div></div>
 <div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
 const T={
-es:{brand:"Escuela de Exhibición",install:"Instalar",kick:"Para la mercaderista de Distrileco",h1a:"Así se exhibe",h1b:"el Super Arroz",heroP:"Aprenda paso a paso a montar pirámides, torres, puntas de góndola e islas que venden solas. Deje de empezar desde cero en cada tienda.",cta:"Empezar la clase",st1:"reglas de oro",st2:"montajes",st3:"puntos de visita",n1:"Reglas de oro",n2:"Niveles",n3:"Montajes",n4:"Super Arroz",n5:"Fechas",n6:"Checklist",n7:"Práctica",s1:"Reglas de oro",s1p:"Toque cada tarjeta cuando la tenga aprendida.",s2:"Los niveles del estante",s2p:"Dónde va cada producto según la altura.",s3:"Montajes que venden",s3p:"Abra cada uno: materiales, pasos y errores a evitar.",s4:"Super Arroz paso a paso",s4p:"Nuestra marca propia: la cuidamos más que a ninguna.",baT:"Antes y después: frenteo",baP:"Así se ve una góndola bien frenteada al lado de una desordenada.",s5:"Fechas que mueven la venta",s5p:"Prepare la exhibición antes de cada temporada.",s6:"Checklist de visita",s6p:"Llénelo en cada tienda y mande el reporte por WhatsApp.",fStore:"Nombre de la tienda o supermercado",fTown:"Municipio / barrio",before:"Foto ANTES",after:"Foto DESPUÉS",fNotes:"Novedades (agotados, averías, competencia)",fSup:"WhatsApp del supervisor",send:"Enviar reporte por WhatsApp",new:"Nueva visita",priv:"Las fotos y los datos se quedan solo en este celular. Las fotos se adjuntan a mano en el chat de WhatsApp. Tratamiento de datos según la Ley 1581 de 2012.",s7:"Ponga a prueba lo aprendido",s7p:"Seis preguntas de la vida real en la tienda.",teamP:"Distribuidores en el Bajo Cauca, Córdoba, Nordeste, Urabá y Sucre desde 1984. Super Arroz es nuestra marca propia.",learned:"Ya lo aprendí",open:"Ver cómo se monta",mat:"Materiales",steps:"Paso a paso",errs:"Errores que debe evitar",tip:"Consejo",progress:(a,b)=>`Su avance: ${a} de ${b} lecciones aprendidas`,done:"Aprendida",tap:"Tocar al aprenderla",now:"AHORA",need:"Escriba el nombre de la tienda",great:"Excelente exhibición",mid:"Va bien, corrija lo pendiente",low:"Hay que trabajar esta tienda",saved:"Visita guardada",qOf:(a,b)=>`Pregunta ${a} de ${b}`,next:"Siguiente",res:(a,b)=>`Resultado: ${a} de ${b}`,again:"Repetir",resMsg:["Repase las reglas de oro y vuelva a intentarlo.","Muy bien, ya casi es experta.","Lista para montar cualquier tienda."],hist:"Últimas visitas",marq:["Primero lo que vence primero","Todo de frente","Nunca un hueco","Super Arroz a la altura de los ojos","Limpio y ordenado","Foto antes y después"]},
-en:{brand:"Display School",install:"Install",kick:"For Distrileco's merchandiser",h1a:"How to display",h1b:"Super Arroz",heroP:"Learn step by step how to build pyramids, towers, end caps and islands that sell by themselves. Stop starting from scratch at every store.",cta:"Start the lesson",st1:"golden rules",st2:"displays",st3:"visit checkpoints",n1:"Golden rules",n2:"Levels",n3:"Displays",n4:"Super Arroz",n5:"Dates",n6:"Checklist",n7:"Practice",s1:"Golden rules",s1p:"Tap each card once you've learned it.",s2:"Shelf levels",s2p:"Where each product goes by height.",s3:"Displays that sell",s3p:"Open each one: materials, steps and mistakes to avoid.",s4:"Super Arroz step by step",s4p:"Our own brand: we care for it more than any other.",baT:"Before and after: facing",baP:"A well-faced shelf next to a messy one.",s5:"Dates that move sales",s5p:"Get the display ready before each season.",s6:"Visit checklist",s6p:"Fill it in at every store and send the report on WhatsApp.",fStore:"Store or supermarket name",fTown:"Town / neighborhood",before:"BEFORE photo",after:"AFTER photo",fNotes:"Notes (out of stock, damage, competitors)",fSup:"Supervisor's WhatsApp",send:"Send report on WhatsApp",new:"New visit",priv:"Photos and data stay only on this phone. Attach the photos by hand in the WhatsApp chat. Data handled under Colombian Law 1581 of 2012.",s7:"Test what you learned",s7p:"Six real-life questions from the store.",teamP:"Distributors in Bajo Cauca, Córdoba, Nordeste, Urabá and Sucre since 1984. Super Arroz is our own brand.",learned:"I've learned it",open:"See how to build it",mat:"Materials",steps:"Step by step",errs:"Mistakes to avoid",tip:"Tip",progress:(a,b)=>`Your progress: ${a} of ${b} lessons learned`,done:"Learned",tap:"Tap once learned",now:"NOW",need:"Type the store name",great:"Excellent display",mid:"Going well, fix what's pending",low:"This store needs work",saved:"Visit saved",qOf:(a,b)=>`Question ${a} of ${b}`,next:"Next",res:(a,b)=>`Score: ${a} of ${b}`,again:"Try again",resMsg:["Review the golden rules and try again.","Very good, you're almost an expert.","Ready to set up any store."],hist:"Latest visits",marq:["First expiring, first out","Everything facing front","Never leave a gap","Super Arroz at eye level","Clean and tidy","Before and after photo"]}
+es:{brand:"Escuela de Exhibición",install:"Instalar",kick:"Para la mercaderista de Distrileco",h1a:"Así se exhibe",h1b:"el Super Arroz",heroP:"Aprenda paso a paso a montar pirámides, torres, puntas de góndola e islas que venden solas. Deje de empezar desde cero en cada tienda.",cta:"Empezar la clase",st1:"reglas de oro",st2:"montajes",st3:"puntos de visita",n1:"Reglas de oro",n2:"Niveles",n3:"Montajes",n4:"Super Arroz",n5:"Fechas",n6:"Checklist",n7:"Práctica",s1:"Reglas de oro",s1p:"Toque cada tarjeta cuando la tenga aprendida.",s2:"Los niveles del estante",s2p:"Dónde va cada producto según la altura.",s3:"Montajes que venden",s3p:"Abra cada uno: materiales, pasos y errores a evitar.",s4:"Super Arroz paso a paso",s4p:"Nuestra marca propia: la cuidamos más que a ninguna.",baT:"Antes y después: frenteo",baP:"Así se ve una góndola bien frenteada al lado de una desordenada.",s5:"Fechas que mueven la venta",s5p:"Prepare la exhibición antes de cada temporada.",s6:"Checklist de visita",s6p:"Llénelo en cada tienda y mande el reporte por WhatsApp.",fStore:"Nombre de la tienda o supermercado",fTown:"Municipio / barrio",before:"Foto ANTES",after:"Foto DESPUÉS",fNotes:"Novedades (agotados, averías, competencia)",fSup:"WhatsApp del supervisor",send:"Enviar reporte por WhatsApp",new:"Nueva visita",takePh:"Tomar foto",gallery:"Galería",cancel:"Cancelar",flip:"Girar",noCam:"No se pudo abrir la cámara; use Galería o permita la cámara",priv:"Las fotos y los datos se quedan solo en este celular. En el celular el reporte sale con las fotos incluidas. Tratamiento de datos según la Ley 1581 de 2012.",s7:"Ponga a prueba lo aprendido",s7p:"Seis preguntas de la vida real en la tienda.",teamP:"Distribuidores en el Bajo Cauca, Córdoba, Nordeste, Urabá y Sucre desde 1984. Super Arroz es nuestra marca propia.",learned:"Ya lo aprendí",open:"Ver cómo se monta",mat:"Materiales",steps:"Paso a paso",errs:"Errores que debe evitar",tip:"Consejo",progress:(a,b)=>`Su avance: ${a} de ${b} lecciones aprendidas`,done:"Aprendida",tap:"Tocar al aprenderla",now:"AHORA",need:"Escriba el nombre de la tienda",great:"Excelente exhibición",mid:"Va bien, corrija lo pendiente",low:"Hay que trabajar esta tienda",saved:"Visita guardada",qOf:(a,b)=>`Pregunta ${a} de ${b}`,next:"Siguiente",res:(a,b)=>`Resultado: ${a} de ${b}`,again:"Repetir",resMsg:["Repase las reglas de oro y vuelva a intentarlo.","Muy bien, ya casi es experta.","Lista para montar cualquier tienda."],hist:"Últimas visitas",marq:["Primero lo que vence primero","Todo de frente","Nunca un hueco","Super Arroz a la altura de los ojos","Limpio y ordenado","Foto antes y después"]},
+en:{brand:"Display School",install:"Install",kick:"For Distrileco's merchandiser",h1a:"How to display",h1b:"Super Arroz",heroP:"Learn step by step how to build pyramids, towers, end caps and islands that sell by themselves. Stop starting from scratch at every store.",cta:"Start the lesson",st1:"golden rules",st2:"displays",st3:"visit checkpoints",n1:"Golden rules",n2:"Levels",n3:"Displays",n4:"Super Arroz",n5:"Dates",n6:"Checklist",n7:"Practice",s1:"Golden rules",s1p:"Tap each card once you've learned it.",s2:"Shelf levels",s2p:"Where each product goes by height.",s3:"Displays that sell",s3p:"Open each one: materials, steps and mistakes to avoid.",s4:"Super Arroz step by step",s4p:"Our own brand: we care for it more than any other.",baT:"Before and after: facing",baP:"A well-faced shelf next to a messy one.",s5:"Dates that move sales",s5p:"Get the display ready before each season.",s6:"Visit checklist",s6p:"Fill it in at every store and send the report on WhatsApp.",fStore:"Store or supermarket name",fTown:"Town / neighborhood",before:"BEFORE photo",after:"AFTER photo",fNotes:"Notes (out of stock, damage, competitors)",fSup:"Supervisor's WhatsApp",send:"Send report on WhatsApp",new:"New visit",takePh:"Take photo",gallery:"Gallery",cancel:"Cancel",flip:"Flip",noCam:"Could not open the camera; use Gallery or allow camera access",priv:"Photos and data stay only on this phone. On phones the report is shared with the photos included. Data handled under Colombian Law 1581 of 2012.",s7:"Test what you learned",s7p:"Six real-life questions from the store.",teamP:"Distributors in Bajo Cauca, Córdoba, Nordeste, Urabá and Sucre since 1984. Super Arroz is our own brand.",learned:"I've learned it",open:"See how to build it",mat:"Materials",steps:"Step by step",errs:"Mistakes to avoid",tip:"Tip",progress:(a,b)=>`Your progress: ${a} of ${b} lessons learned`,done:"Learned",tap:"Tap once learned",now:"NOW",need:"Type the store name",great:"Excellent display",mid:"Going well, fix what's pending",low:"This store needs work",saved:"Visit saved",qOf:(a,b)=>`Question ${a} of ${b}`,next:"Next",res:(a,b)=>`Score: ${a} of ${b}`,again:"Try again",resMsg:["Review the golden rules and try again.","Very good, you're almost an expert.","Ready to set up any store."],hist:"Latest visits",marq:["First expiring, first out","Everything facing front","Never leave a gap","Super Arroz at eye level","Clean and tidy","Before and after photo"]}
 };
 const RULES=[
 {es:["Primero lo que vence primero","Lo más viejo adelante, lo que llega nuevo atrás (PEPS). Así nunca se vence un producto en la tienda."],en:["First to expire, first out","Older stock in front, new stock behind (FIFO). That way nothing expires in the store."]},
@@ -415,7 +429,22 @@ function renderChk(){
   score();
 }
 function score(){const n=chk.length;$('#score').textContent=n+'/10';$('#scoreTxt').textContent=n>=9?t('great'):n>=6?t('mid'):t('low')}
-document.querySelectorAll('.shot input').forEach(inp=>inp.onchange=()=>{const f=inp.files[0];if(!f)return;const im=$('#'+inp.dataset.t);im.src=URL.createObjectURL(f);im.hidden=false});
+const PH={};
+function setPhoto(t,blob){PH[t]=blob;const im=$('#'+t);im.src=URL.createObjectURL(blob);im.hidden=false}
+document.querySelectorAll('.shot input').forEach(inp=>inp.onchange=()=>{const f=inp.files[0];if(f)setPhoto(inp.dataset.t,f);inp.value=''});
+let camStream=null,camTarget=null,facing='environment';
+async function openCam(){
+  try{
+    if(camStream)camStream.getTracks().forEach(x=>x.stop());
+    camStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:facing},width:{ideal:1920},height:{ideal:1080}},audio:false});
+    $('#camVid').srcObject=camStream;$('#camv').classList.add('on');document.body.style.overflow='hidden';
+  }catch(e){toast(t('noCam'));const i=document.createElement('input');i.type='file';i.accept='image/*';i.capture='environment';i.onchange=()=>{if(i.files[0])setPhoto(camTarget,i.files[0])};i.click()}
+}
+function closeCam(){if(camStream)camStream.getTracks().forEach(x=>x.stop());camStream=null;$('#camv').classList.remove('on');document.body.style.overflow=''}
+document.querySelectorAll('[data-cam]').forEach(b=>b.onclick=()=>{camTarget=b.dataset.cam;openCam()});
+$('#camX').onclick=closeCam;
+$('#camFlip').onclick=()=>{facing=facing==='environment'?'user':'environment';openCam()};
+$('#camSnap').onclick=()=>{const v=$('#camVid');const c=document.createElement('canvas');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);c.toBlob(b=>{setPhoto(camTarget,b);closeCam();toast(t('done'))},'image/jpeg',0.85)};
 function now(){return new Date().toLocaleString(L==='es'?'es-CO':'en-US',{timeZone:'America/Bogota',dateStyle:'medium',timeStyle:'short'})}
 $('#btnWa').onclick=()=>{
   const ti=$('#fTienda').value.trim();if(!ti){toast(t('need'));$('#fTienda').focus();return}
@@ -424,9 +453,11 @@ $('#btnWa').onclick=()=>{
   const msg=`${head}\n${now()} (hora Colombia)\n${ti}${$('#fLugar').value?' - '+$('#fLugar').value:''}\n${L==='es'?'Puntaje':'Score'}: ${chk.length}/10\n\n${ok}\n\n${L==='es'?'Novedades':'Notes'}: ${$('#fNotas').value||'-'}\n\n${L==='es'?'(Adjunto fotos antes y después)':'(Before/after photos attached)'}`;
   let num=$('#fSup').value.replace(/\D/g,'');if(num.length===10)num='57'+num;
   const h=JSON.parse(localStorage.getItem('exhist')||'[]');h.unshift({ti,s:chk.length,f:now()});localStorage.setItem('exhist',JSON.stringify(h.slice(0,10)));renderHist();
+  const files=[['imgA','antes'],['imgD','despues']].filter(x=>PH[x[0]]).map(x=>new File([PH[x[0]]],`${x[1]}-${ti.replace(/[^\w]+/g,'-')}.jpg`,{type:'image/jpeg'}));
+  if(files.length&&navigator.canShare&&navigator.canShare({files})){navigator.share({files,text:msg}).catch(()=>{});return}
   window.open('https://wa.me/'+num+'?text='+encodeURIComponent(msg),'_blank');
 };
-$('#btnReset').onclick=()=>{chk=[];localStorage.setItem('exchk','[]');['#fTienda','#fLugar','#fNotas'].forEach(s=>$(s).value='');['#imgA','#imgD'].forEach(s=>{$(s).hidden=true;$(s).removeAttribute('src')});renderChk();toast(t('new'))};
+$('#btnReset').onclick=()=>{chk=[];localStorage.setItem('exchk','[]');['#fTienda','#fLugar','#fNotas'].forEach(s=>$(s).value='');['#imgA','#imgD'].forEach(s=>{$(s).hidden=true;$(s).removeAttribute('src');delete PH[s.slice(1)]});renderChk();toast(t('new'))};
 function renderHist(){const h=JSON.parse(localStorage.getItem('exhist')||'[]');$('#hist').innerHTML=h.length?`<b>${t('hist')}</b>`+h.map(x=>`<div><span>${x.ti.replace(/[<>&]/g,'')}</span><span>${x.s}/10 · ${x.f}</span></div>`).join(''):''}
 // quiz
 let qi=0,qs=0;
