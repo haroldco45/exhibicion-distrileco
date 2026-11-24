@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Escuela de Exhibición Distrileco · Super Arroz</title>
+<meta name="description" content="Guía práctica para la mercaderista de Distrileco: cómo exhibir el Super Arroz y los productos en la tienda — pirámides, torres, puntas de góndola, islas y más.">
+<meta name="theme-color" content="#C8102E">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="img/icon-192.png">
+<link rel="apple-touch-icon" href="img/icon-192.png">
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://exhibicion-distrileco.netlify.app/">
+<meta property="og:title" content="Escuela de Exhibición Distrileco · Así se exhibe el Super Arroz">
+<meta property="og:description" content="Guía para mercaderistas: pirámides, torres, puntas de góndola, islas y checklist de visita. Distrileco Caucasia.">
+<meta property="og:image" content="https://exhibicion-distrileco.netlify.app/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Escuela de Exhibición Distrileco · Super Arroz">
+<meta name="twitter:description" content="Así se exhibe el Super Arroz y los productos Distrileco en la tienda.">
+<meta name="twitter:image" content="https://exhibicion-distrileco.netlify.app/img/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;800;900&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--red:#C8102E;--red2:#8E0B20;--blue:#1C4E9E;--gold:#F2B705;--ink:#141414;--paper:#FAF6EC;--muted:#666;--ok:#1E8C46}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Barlow,system-ui,sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:'Barlow Condensed',Barlow,sans-serif;letter-spacing:.5px;line-height:1}
+button{font-family:inherit;cursor:pointer}
+/* top bar */
+.top{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:10px;padding:8px 14px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:3px solid var(--red)}
+.top img{height:38px}
+.top b{font-family:'Barlow Condensed';font-size:20px;color:var(--red)}
+.top .sp{flex:1}
+.lang{display:flex;border:2px solid var(--ink);border-radius:20px;overflow:hidden}
+.lang button{border:0;background:#fff;padding:5px 11px;font-weight:800;font-size:13px}
+.lang button.on{background:var(--ink);color:#fff}
+#btnInstall{display:none;border:0;background:var(--red);color:#fff;font-weight:800;padding:7px 12px;border-radius:20px;font-size:13px}
+/* hero */
+.hero{position:relative;min-height:88vh;background:radial-gradient(circle at 75% 40%,#ff4157 0,var(--red) 35%,var(--red2) 100%);color:#fff;overflow:hidden;display:flex;align-items:center;padding:40px 20px 70px}
+.hero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.05) 0 30px,transparent 30px 60px);animation:slide 12s linear infinite}
+@keyframes slide{to{background-position:300px 0}}
+.hero-in{position:relative;max-width:1100px;margin:auto;display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:center;width:100%}
+.kick{display:inline-block;background:var(--gold);color:var(--ink);font-weight:900;padding:6px 14px;border-radius:4px;font-size:14px;letter-spacing:1px;text-transform:uppercase}
+.hero h1{font-size:clamp(52px,11vw,110px);margin:14px 0 10px;text-transform:uppercase}
+.hero h1 span{color:var(--gold);display:block}
+.hero p{font-size:19px;max-width:520px;opacity:.95}
+.cta{display:inline-block;margin-top:22px;background:#fff;color:var(--red);font-weight:900;text-decoration:none;padding:15px 26px;border-radius:40px;font-size:18px;box-shadow:0 10px 30px rgba(0,0,0,.3);animation:pulse 2.2s infinite}
+@keyframes pulse{50%{transform:scale(1.05)}}
+.bagwrap{position:relative;display:flex;justify-content:center}
+.bagwrap::after{content:"";position:absolute;bottom:-10px;width:60%;height:30px;background:rgba(0,0,0,.35);border-radius:50%;filter:blur(12px);animation:shad 4s ease-in-out infinite}
+.bagwrap img{width:min(330px,70vw);animation:float 4s ease-in-out infinite;filter:drop-shadow(0 25px 30px rgba(0,0,0,.35))}
+@keyframes float{50%{transform:translateY(-22px) rotate(-3deg)}}
+@keyframes shad{50%{transform:scaleX(.8);opacity:.6}}
+.stats{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:center;gap:0;background:rgba(0,0,0,.25)}
+.stats div{padding:12px 18px;text-align:center;border-right:1px solid rgba(255,255,255,.2)}
+.stats div:last-child{border:0}
+.stats b{display:block;font-family:'Barlow Condensed';font-size:30px;color:var(--gold)}
+.stats small{font-size:12px;text-transform:uppercase;letter-spacing:1px}
+/* marquee */
+.marq{background:var(--ink);color:var(--gold);overflow:hidden;white-space:nowrap;padding:12px 0;font-family:'Barlow Condensed';font-size:22px;text-transform:uppercase}
+.marq div{display:inline-block;animation:mq 30s linear infinite}
+.marq span{margin:0 26px}
+.marq span::before{content:"";display:inline-block;width:10px;height:10px;background:var(--red);transform:rotate(45deg);margin-right:14px;vertical-align:middle}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* nav chips */
+.chips{position:sticky;top:57px;z-index:40;display:flex;gap:8px;overflow-x:auto;padding:10px 14px;background:var(--paper);border-bottom:1px solid #e6dfcc;scrollbar-width:none}
+.chips a{flex:none;text-decoration:none;color:var(--ink);font-weight:800;font-size:14px;padding:8px 14px;border-radius:20px;background:#fff;border:2px solid #e0d6bd;transition:.2s}
+.chips a.on,.chips a:hover{background:var(--red);border-color:var(--red);color:#fff}
+/* progress */
+.prog{max-width:1100px;margin:18px auto 0;padding:0 18px}
+.prog .bar{height:12px;background:#e8e0ca;border-radius:10px;overflow:hidden}
+.prog .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--gold));transition:width .8s}
+.prog p{font-size:14px;font-weight:700;margin-top:6px;color:var(--muted)}
+section{max-width:1100px;margin:auto;padding:50px 18px 20px}
+.sec-h{display:flex;align-items:flex-end;gap:14px;margin-bottom:22px}
+.sec-h .n{font-family:'Barlow Condensed';font-size:64px;color:var(--red);line-height:.8}
+.sec-h h2{font-size:clamp(34px,6vw,50px);text-transform:uppercase}
+.sec-h p{color:var(--muted);font-weight:600}
+/* rules */
+.rules{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.rule{background:#fff;border-radius:16px;padding:18px;border-left:6px solid var(--red);box-shadow:0 6px 18px rgba(0,0,0,.06);position:relative;overflow:hidden;cursor:pointer;transition:.25s}
+.rule:hover{transform:translateY(-4px)}
+.rule .num{position:absolute;right:10px;top:-8px;font-family:'Barlow Condensed';font-size:80px;color:rgba(200,16,46,.08)}
+.rule h3{font-size:24px;margin-bottom:6px}
+.rule p{font-size:15px;color:#333}
+.rule.done{border-left-color:var(--ok)}
+.rule .ok{display:inline-block;margin-top:10px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+.rule.done .ok{color:var(--ok)}
+/* level image */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center;margin-top:24px}
+.split img{border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,.15)}
+.split ul{list-style:none}
+.split li{padding:10px 0 10px 18px;border-bottom:1px dashed #d8ceb5;position:relative;font-size:16px}
+.split li::before{content:"";position:absolute;left:0;top:17px;width:9px;height:9px;background:var(--red);border-radius:2px}
+.split li b{color:var(--red)}
+/* display cards */
+.disp{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+.card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.08);display:flex;flex-direction:column}
+.card .ph{position:relative;overflow:hidden;aspect-ratio:3/2}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease}
+.card:hover .ph img{transform:scale(1.12)}
+.card .tag{position:absolute;left:12px;top:12px;background:var(--gold);font-weight:900;font-size:12px;padding:4px 10px;border-radius:4px;text-transform:uppercase}
+.card .bd{padding:16px 18px 18px;flex:1;display:flex;flex-direction:column}
+.card h3{font-size:28px;text-transform:uppercase}
+.card .when{color:var(--muted);font-weight:600;margin:4px 0 10px}
+.card button.open{margin-top:auto;border:0;background:var(--ink);color:#fff;font-weight:800;padding:12px;border-radius:12px;font-size:15px}
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;display:none;align-items:flex-end;justify-content:center}
+.modal.on{display:flex;animation:fade .25s}
+@keyframes fade{from{opacity:0}}
+.sheet{background:#fff;width:100%;max-width:760px;max-height:92vh;overflow:auto;border-radius:24px 24px 0 0;animation:up .35s ease}
+@keyframes up{from{transform:translateY(60px)}}
+.sheet .ph img{width:100%}
+.sheet .in{padding:18px 20px 30px}
+.sheet h3{font-size:36px;text-transform:uppercase;color:var(--red)}
+.sheet h4{font-size:15px;text-transform:uppercase;letter-spacing:1px;margin:18px 0 8px;color:var(--blue)}
+.sheet ol{padding-left:0;list-style:none;counter-reset:s}
+.sheet ol li{counter-increment:s;position:relative;padding:8px 0 8px 44px;border-bottom:1px solid #eee}
+.sheet ol li::before{content:counter(s);position:absolute;left:0;top:6px;width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff;font-weight:900;display:grid;place-items:center}
+.pill{display:inline-block;background:#f1ecdf;border-radius:20px;padding:5px 12px;margin:3px 4px 3px 0;font-size:14px;font-weight:600}
+.err{background:#fff1f2;border-left:5px solid var(--red);padding:10px 12px;margin-top:6px;border-radius:8px;font-size:15px}
+.close{position:sticky;top:0;float:right;margin:12px;border:0;background:var(--ink);color:#fff;font-weight:900;width:42px;height:42px;border-radius:50%;font-size:20px;z-index:2}
+.learned{width:100%;margin-top:20px;border:0;background:var(--ok);color:#fff;font-weight:900;font-size:17px;padding:14px;border-radius:14px}
+/* super arroz ficha */
+.ficha{display:grid;grid-template-columns:.8fr 1.2fr;gap:24px;background:linear-gradient(135deg,#fff,#fff7dc);border-radius:24px;padding:24px;box-shadow:0 12px 30px rgba(0,0,0,.08);align-items:center}
+.ficha img{animation:float 5s ease-in-out infinite;max-height:420px;margin:auto}
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.specs div{background:#fff;border-radius:12px;padding:12px;border-top:4px solid var(--gold)}
+.specs b{display:block;font-family:'Barlow Condensed';font-size:26px;color:var(--red)}
+.specs small{color:var(--muted);font-weight:700;text-transform:uppercase;font-size:11px;letter-spacing:1px}
+.steps{counter-reset:k;list-style:none}
+.steps li{counter-increment:k;padding:10px 0 10px 46px;position:relative;border-bottom:1px dashed #e0d6bd}
+.steps li::before{content:counter(k,decimal-leading-zero);position:absolute;left:0;top:6px;font-family:'Barlow Condensed';font-size:28px;color:var(--red)}
+/* before/after */
+.ba{position:relative;border-radius:20px;overflow:hidden;margin-top:24px;user-select:none;touch-action:pan-y}
+.ba img{width:100%}
+.ba .over{position:absolute;inset:0;overflow:hidden;width:50%}
+.ba .over img{width:auto;height:100%;max-width:none}
+.ba .handle{position:absolute;top:0;bottom:0;left:50%;width:4px;background:#fff;box-shadow:0 0 10px rgba(0,0,0,.4)}
+.ba .handle::after{content:"< >";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--red);color:#fff;font-weight:900;padding:10px 12px;border-radius:30px;white-space:nowrap}
+/* calendar */
+.cal{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.ev{background:#fff;border-radius:16px;padding:16px;border-top:6px solid var(--blue);transition:.2s}
+.ev.now{border-top-color:var(--red);background:linear-gradient(160deg,#fff,#ffe7ea);box-shadow:0 0 0 3px var(--red)}
+.ev .m{font-family:'Barlow Condensed';font-size:22px;color:var(--blue);text-transform:uppercase}
+.ev.now .m{color:var(--red)}
+.ev h3{font-size:22px;margin:4px 0}
+.ev p{font-size:14px;color:#333}
+.ev .badge{display:none;background:var(--red);color:#fff;font-size:11px;font-weight:900;padding:3px 8px;border-radius:4px;letter-spacing:1px}
+.ev.now .badge{display:inline-block}
+/* checklist */
+.form{background:#fff;border-radius:22px;padding:20px;box-shadow:0 10px 26px rgba(0,0,0,.07)}
+.form label{display:block;font-weight:800;font-size:14px;margin:12px 0 6px}
+.form input[type=text],.form input[type=tel],.form textarea{width:100%;padding:12px;border:2px solid #e0d6bd;border-radius:12px;font:inherit;font-size:16px}
+.chk{display:flex;gap:12px;align-items:center;padding:12px;border-radius:12px;background:#faf7ef;margin:6px 0;cursor:pointer;font-weight:600}
+.chk input{width:24px;height:24px;accent-color:var(--ok);flex:none}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.shot{border:2px dashed #cfc3a5;border-radius:14px;aspect-ratio:4/3;display:grid;place-items:center;text-align:center;font-weight:800;color:var(--muted);position:relative;overflow:hidden;background:#faf7ef}
+.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.shot input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.score{display:flex;align-items:center;gap:14px;margin:14px 0}
+.score b{font-family:'Barlow Condensed';font-size:54px;color:var(--red)}
+.btn{display:block;width:100%;border:0;font-weight:900;font-size:17px;padding:15px;border-radius:14px;margin-top:10px}
+.btn.wa{background:#1E8C46;color:#fff}
+.btn.sec{background:#efe8d6;color:var(--ink)}
+.priv{font-size:12px;color:var(--muted);margin-top:10px}
+.hist{margin-top:14px}
+.hist div{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;font-size:14px}
+/* quiz */
+.quiz{background:var(--ink);color:#fff;border-radius:24px;padding:24px;position:relative;overflow:hidden}
+.quiz::before{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:var(--red);opacity:.5}
+.quiz .q{font-size:22px;font-weight:800;margin:10px 0 16px;position:relative}
+.quiz .qn{color:var(--gold);font-weight:900;text-transform:uppercase;letter-spacing:1px;font-size:13px;position:relative}
+.opt{display:block;width:100%;text-align:left;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.2);color:#fff;padding:14px;border-radius:14px;margin:8px 0;font-size:16px;font-weight:600;position:relative}
+.opt.good{background:var(--ok);border-color:var(--ok)}
+.opt.bad{background:var(--red);border-color:var(--red)}
+.exp{margin-top:10px;background:rgba(255,255,255,.1);padding:12px;border-radius:12px;display:none;position:relative}
+.next{margin-top:14px;background:var(--gold);color:var(--ink);border:0;font-weight:900;padding:12px 20px;border-radius:30px;display:none;position:relative}
+/* team */
+.team{background:var(--blue);color:#fff;border-radius:24px;padding:24px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.team img{width:110px;background:#fff;border-radius:50%;padding:8px}
+.team h3{font-size:30px}
+.team a{color:var(--gold);font-weight:800}
+footer{margin-top:50px;background:var(--ink);color:#bbb;text-align:center;padding:28px 18px 40px;font-size:14px}
+footer b{color:#fff}
+.reveal{opacity:0;transform:translateY(30px);transition:.7s ease}
+.reveal.in{opacity:1;transform:none}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;padding:12px 20px;border-radius:30px;font-weight:700;z-index:200;transition:.35s}
+.toast.on{transform:translateX(-50%)}
+@media(max-width:760px){
+ .hero-in,.split,.ficha{grid-template-columns:1fr}
+ .hero{min-height:auto;padding-bottom:110px}
+ .bagwrap{order:-1}.bagwrap img{width:200px}
+ .stats div{padding:10px 8px}.stats b{font-size:24px}
+ .team{grid-template-columns:1fr;text-align:center}.team img{margin:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <img src="img/logo-distrileco.png" alt="Distrileco">
+  <b data-i="brand">Escuela de Exhibición</b>
+  <span class="sp"></span>
+  <button id="btnInstall" data-i="install">Instalar</button>
+  <div class="lang"><button id="les" class="on">ES</button><button id="len">EN</button></div>
+</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <span class="kick" data-i="kick">Para la mercaderista de Distrileco</span>
+      <h1><span data-i="h1a">Así se exhibe</span><b data-i="h1b">el Super Arroz</b></h1>
+      <p data-i="heroP">Aprenda paso a paso a montar pirámides, torres, puntas de góndola e islas que venden solas. Deje de empezar desde cero en cada tienda.</p>
+      <a class="cta" href="#reglas" data-i="cta">Empezar la clase</a>
+    </div>
+    <div class="bagwrap"><img src="img/super-arroz.png" alt="Super Arroz 500 g"></div>
+  </div>
+  <div class="stats">
+    <div><b class="count" data-to="8">0</b><small data-i="st1">reglas de oro</small></div>
+    <div><b class="count" data-to="6">0</b><small data-i="st2">montajes</small></div>
+    <div><b class="count" data-to="10">0</b><small data-i="st3">puntos de visita</small></div>
+  </div>
+</header>
+
+<div class="marq"><div id="marq"></div></div>
+
+<nav class="chips" id="chips">
+  <a href="#reglas" data-i="n1">Reglas de oro</a>
+  <a href="#niveles" data-i="n2">Niveles</a>
+  <a href="#montajes" data-i="n3">Montajes</a>
+  <a href="#superarroz" data-i="n4">Super Arroz</a>
+  <a href="#fechas" data-i="n5">Fechas</a>
+  <a href="#visita" data-i="n6">Checklist</a>
+  <a href="#practica" data-i="n7">Práctica</a>
+</nav>
+
+<div class="prog"><div class="bar"><i id="pbar"></i></div><p id="ptxt"></p></div>
+
+<section id="reglas">
+  <div class="sec-h reveal"><span class="n">01</span><div><h2 data-i="s1">Reglas de oro</h2><p data-i="s1p">Toque cada tarjeta cuando la tenga aprendida.</p></div></div>
+  <div class="rules" id="rules"></div>
+</section>
+
+<section id="niveles">
+  <div class="sec-h reveal"><span class="n">02</span><div><h2 data-i="s2">Los niveles del estante</h2><p data-i="s2p">Dónde va cada producto según la altura.</p></div></div>
+  <div class="split reveal">
+    <img src="img/niveles.jpg" alt="Niveles del estante" loading="lazy">
+    <ul id="lvls"></ul>
+  </div>
+</section>
+
+<section id="montajes">
+  <div class="sec-h reveal"><span class="n">03</span><div><h2 data-i="s3">Montajes que venden</h2><p data-i="s3p">Abra cada uno: materiales, pasos y errores a evitar.</p></div></div>
+  <div class="disp" id="disp"></div>
+</section>
+
+<section id="superarroz">
+  <div class="sec-h reveal"><span class="n">04</span><div><h2 data-i="s4">Super Arroz paso a paso</h2><p data-i="s4p">Nuestra marca propia: la cuidamos más que a ninguna.</p></div></div>
+  <div class="ficha reveal">
+    <img src="img/super-arroz.png" alt="Super Arroz" loading="lazy">
+    <div>
+      <div class="specs" id="specs"></div>
+      <ol class="steps" id="saSteps"></ol>
+    </div>
+  </div>
+  <h3 class="reveal" style="font-size:30px;margin-top:34px;text-transform:uppercase" data-i="baT">Antes y después: frenteo</h3>
+  <p class="reveal" style="color:var(--muted);font-weight:600" data-i="baP">Así se ve una góndola bien frenteada al lado de una desordenada.</p>
+  <div class="ba reveal" id="ba">
+    <img src="img/frenteo.jpg" alt="Frenteo correcto e incorrecto">
+  </div>
+</section>
+
+<section id="fechas">
+  <div class="sec-h reveal"><span class="n">05</span><div><h2 data-i="s5">Fechas que mueven la venta</h2><p data-i="s5p">Prepare la exhibición antes de cada temporada.</p></div></div>
+  <div class="cal" id="cal"></div>
+</section>
+
+<section id="visita">
+  <div class="sec-h reveal"><span class="n">06</span><div><h2 data-i="s6">Checklist de visita</h2><p data-i="s6p">Llénelo en cada tienda y mande el reporte por WhatsApp.</p></div></div>
+  <div class="form reveal">
+    <label data-i="fStore">Nombre de la tienda o supermercado</label>
+    <input type="text" id="fTienda" maxlength="80">
+    <label data-i="fTown">Municipio / barrio</label>
+    <input type="text" id="fLugar" maxlength="80">
+    <div id="chkList"></div>
+    <div class="score"><b id="score">0/10</b><span id="scoreTxt" style="font-weight:700"></span></div>
+    <div class="photos">
+      <div class="shot"><span data-i="before">Foto ANTES</span><img id="imgA" hidden alt=""><input type="file" accept="image/*" capture="environment" data-t="imgA"></div>
+      <div class="shot"><span data-i="after">Foto DESPUÉS</span><img id="imgD" hidden alt=""><input type="file" accept="image/*" capture="environment" data-t="imgD"></div>
+    </div>
+    <label data-i="fNotes">Novedades (agotados, averías, competencia)</label>
+    <textarea id="fNotas" rows="3" maxlength="400"></textarea>
+    <label data-i="fSup">WhatsApp del supervisor</label>
+    <input type="tel" id="fSup" value="3117700431" maxlength="13">
+    <button class="btn wa" id="btnWa" data-i="send">Enviar reporte por WhatsApp</button>
+    <button class="btn sec" id="btnReset" data-i="new">Nueva visita</button>
+    <p class="priv" data-i="priv">Las fotos y los datos se quedan solo en este celular. Las fotos se adjuntan a mano en el chat de WhatsApp. Tratamiento de datos según la Ley 1581 de 2012.</p>
+    <div class="hist" id="hist"></div>
+  </div>
+</section>
+
+<section id="practica">
+  <div class="sec-h reveal"><span class="n">07</span><div><h2 data-i="s7">Ponga a prueba lo aprendido</h2><p data-i="s7p">Seis preguntas de la vida real en la tienda.</p></div></div>
+  <div class="quiz reveal" id="quiz"></div>
+</section>
+
+<section>
+  <div class="team reveal">
+    <img src="img/logo-distrileco.png" alt="Distrileco">
+    <div>
+      <h3>Distrileco Caucasia S.A.S.</h3>
+      <p data-i="teamP">Distribuidores en el Bajo Cauca, Córdoba, Nordeste, Urabá y Sucre desde 1984. Super Arroz es nuestra marca propia.</p>
+      <p style="margin-top:8px"><a href="https://www.distrileco.com" target="_blank" rel="noopener">www.distrileco.com</a></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><b>Desarrollada por Vibras Positivas HM — Derechos de Autor Reservados</b></p>
+  <p style="margin-top:6px" id="clock"></p>
+</footer>
+
+<div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const T={
+es:{brand:"Escuela de Exhibición",install:"Instalar",kick:"Para la mercaderista de Distrileco",h1a:"Así se exhibe",h1b:"el Super Arroz",heroP:"Aprenda paso a paso a montar pirámides, torres, puntas de góndola e islas que venden solas. Deje de empezar desde cero en cada tienda.",cta:"Empezar la clase",st1:"reglas de oro",st2:"montajes",st3:"puntos de visita",n1:"Reglas de oro",n2:"Niveles",n3:"Montajes",n4:"Super Arroz",n5:"Fechas",n6:"Checklist",n7:"Práctica",s1:"Reglas de oro",s1p:"Toque cada tarjeta cuando la tenga aprendida.",s2:"Los niveles del estante",s2p:"Dónde va cada producto según la altura.",s3:"Montajes que venden",s3p:"Abra cada uno: materiales, pasos y errores a evitar.",s4:"Super Arroz paso a paso",s4p:"Nuestra marca propia: la cuidamos más que a ninguna.",baT:"Antes y después: frenteo",baP:"Así se ve una góndola bien frenteada al lado de una desordenada.",s5:"Fechas que mueven la venta",s5p:"Prepare la exhibición antes de cada temporada.",s6:"Checklist de visita",s6p:"Llénelo en cada tienda y mande el reporte por WhatsApp.",fStore:"Nombre de la tienda o supermercado",fTown:"Municipio / barrio",before:"Foto ANTES",after:"Foto DESPUÉS",fNotes:"Novedades (agotados, averías, competencia)",fSup:"WhatsApp del supervisor",send:"Enviar reporte por WhatsApp",new:"Nueva visita",priv:"Las fotos y los datos se quedan solo en este celular. Las fotos se adjuntan a mano en el chat de WhatsApp. Tratamiento de datos según la Ley 1581 de 2012.",s7:"Ponga a prueba lo aprendido",s7p:"Seis preguntas de la vida real en la tienda.",teamP:"Distribuidores en el Bajo Cauca, Córdoba, Nordeste, Urabá y Sucre desde 1984. Super Arroz es nuestra marca propia.",learned:"Ya lo aprendí",open:"Ver cómo se monta",mat:"Materiales",steps:"Paso a paso",errs:"Errores que debe evitar",tip:"Consejo",progress:(a,b)=>`Su avance: ${a} de ${b} lecciones aprendidas`,done:"Aprendida",tap:"Tocar al aprenderla",now:"AHORA",need:"Escriba el nombre de la tienda",great:"Excelente exhibición",mid:"Va bien, corrija lo pendiente",low:"Hay que trabajar esta tienda",saved:"Visita guardada",qOf:(a,b)=>`Pregunta ${a} de ${b}`,next:"Siguiente",res:(a,b)=>`Resultado: ${a} de ${b}`,again:"Repetir",resMsg:["Repase las reglas de oro y vuelva a intentarlo.","Muy bien, ya casi es experta.","Lista para montar cualquier tienda."],hist:"Últimas visitas",marq:["Primero lo que vence primero","Todo de frente","Nunca un hueco","Super Arroz a la altura de los ojos","Limpio y ordenado","Foto antes y después"]},
+en:{brand:"Display School",install:"Install",kick:"For Distrileco's merchandiser",h1a:"How to display",h1b:"Super Arroz",heroP:"Learn step by step how to build pyramids, towers, end caps and islands that sell by themselves. Stop starting from scratch at every store.",cta:"Start the lesson",st1:"golden rules",st2:"displays",st3:"visit checkpoints",n1:"Golden rules",n2:"Levels",n3:"Displays",n4:"Super Arroz",n5:"Dates",n6:"Checklist",n7:"Practice",s1:"Golden rules",s1p:"Tap each card once you've learned it.",s2:"Shelf levels",s2p:"Where each product goes by height.",s3:"Displays that sell",s3p:"Open each one: materials, steps and mistakes to avoid.",s4:"Super Arroz step by step",s4p:"Our own brand: we care for it more than any other.",baT:"Before and after: facing",baP:"A well-faced shelf next to a messy one.",s5:"Dates that move sales",s5p:"Get the display ready before each season.",s6:"Visit checklist",s6p:"Fill it in at every store and send the report on WhatsApp.",fStore:"Store or supermarket name",fTown:"Town / neighborhood",before:"BEFORE photo",after:"AFTER photo",fNotes:"Notes (out of stock, damage, competitors)",fSup:"Supervisor's WhatsApp",send:"Send report on WhatsApp",new:"New visit",priv:"Photos and data stay only on this phone. Attach the photos by hand in the WhatsApp chat. Data handled under Colombian Law 1581 of 2012.",s7:"Test what you learned",s7p:"Six real-life questions from the store.",teamP:"Distributors in Bajo Cauca, Córdoba, Nordeste, Urabá and Sucre since 1984. Super Arroz is our own brand.",learned:"I've learned it",open:"See how to build it",mat:"Materials",steps:"Step by step",errs:"Mistakes to avoid",tip:"Tip",progress:(a,b)=>`Your progress: ${a} of ${b} lessons learned`,done:"Learned",tap:"Tap once learned",now:"NOW",need:"Type the store name",great:"Excellent display",mid:"Going well, fix what's pending",low:"This store needs work",saved:"Visit saved",qOf:(a,b)=>`Question ${a} of ${b}`,next:"Next",res:(a,b)=>`Score: ${a} of ${b}`,again:"Try again",resMsg:["Review the golden rules and try again.","Very good, you're almost an expert.","Ready to set up any store."],hist:"Latest visits",marq:["First expiring, first out","Everything facing front","Never leave a gap","Super Arroz at eye level","Clean and tidy","Before and after photo"]}
+};
+const RULES=[
+{es:["Primero lo que vence primero","Lo más viejo adelante, lo que llega nuevo atrás (PEPS). Así nunca se vence un producto en la tienda."],en:["First to expire, first out","Older stock in front, new stock behind (FIFO). That way nothing expires in the store."]},
+{es:["Todo de frente","Cada bolsa con el logo y el peso mirando al cliente, alineada al borde del estante."],en:["Everything facing front","Every bag with the logo and weight facing the shopper, lined up with the shelf edge."]},
+{es:["Nunca un hueco","Un espacio vacío es una venta perdida y un regalo para la competencia. Reponga en cada visita."],en:["Never leave a gap","An empty space is a lost sale and a gift to competitors. Restock on every visit."]},
+{es:["A la altura de los ojos","Super Arroz va donde el cliente mira primero: entre el pecho y los ojos."],en:["At eye level","Super Arroz goes where the shopper looks first: between chest and eye level."]},
+{es:["En bloque, no regado","La marca junta en un bloque vertical llama más la atención que unidades sueltas por todo el estante."],en:["In a block, not scattered","The brand together in a vertical block draws more attention than units scattered across the shelf."]},
+{es:["Limpio y sano","Sin polvo, sin bolsas rotas ni abiertas. Lo averiado se retira y se reporta."],en:["Clean and intact","No dust, no torn or open bags. Damaged units are removed and reported."]},
+{es:["Precio a la vista","Verifique que la tienda tenga la etiqueta de precio visible debajo del producto. Si no se ve, no se vende."],en:["Price in sight","Make sure the store shows the price tag under the product. If it can't be seen, it won't sell."]},
+{es:["Firme y seguro","Base plana, nada que se pueda caer, nunca más alto que el hombro. Un montaje que se cae espanta al cliente."],en:["Stable and safe","Flat base, nothing that can fall, never above shoulder height. A collapsing display scares shoppers away."]}
+];
+const LVLS={es:[["Nivel ojos","el mejor sitio. Aquí va el Super Arroz y lo que queremos impulsar."],["Nivel manos","productos de compra frecuente; se agarran sin esfuerzo."],["Nivel pies","pacas, productos pesados y de reserva."],["Arriba de todo","solo exhibición de marca o inventario liviano; nunca lo pesado."]],en:[["Eye level","the best spot. Super Arroz and anything we want to push goes here."],["Hand level","frequently bought products; easy to grab."],["Foot level","bundles, heavy items and backup stock."],["Very top","brand display or light stock only; never heavy items."]]};
+const DISP=[
+{id:"piramide",img:"img/piramide.jpg",es:{t:"Pirámide",tag:"Alto impacto",w:"Para entradas, pasillos anchos y lanzamientos.",m:["Estiba o base plana","Bolsas de Super Arroz","Cabezote o aviso de marca","Cinta para asegurar la base"],s:["Escoja un sitio de paso, lejos de la puerta del baño y de químicos.","Arme la base más ancha: 6 bolsas en línea, todas de frente.","Cada fila de arriba lleva una bolsa menos, apoyada entre dos de abajo.","Corone con una sola bolsa y ponga el aviso de marca arriba.","Revise que no se mueva al tocarla."],e:["Base angosta o sobre piso desnivelado","Bolsas de lado o con el logo escondido","Hacerla tan alta que el cliente no se atreva a tomar"]},en:{t:"Pyramid",tag:"High impact",w:"For entrances, wide aisles and launches.",m:["Pallet or flat base","Super Arroz bags","Header or brand sign","Tape to secure the base"],s:["Pick a high-traffic spot, away from restrooms and chemicals.","Build the widest row first: 6 bags in a line, all facing front.","Each row above has one bag less, resting between two below.","Top it with a single bag and place the brand sign above.","Check that it doesn't move when touched."],e:["Narrow base or uneven floor","Bags sideways or with the logo hidden","Building it so tall shoppers don't dare take one"]}},
+{id:"torre",img:"img/torre.jpg",es:{t:"Torre",tag:"Poco espacio",w:"Cuando hay poco piso: columnas, esquinas y cajas.",m:["Base firme","Bolsas o pacas","Aviso de marca"],s:["Ubique la torre junto a una columna o esquina visible.","Arme 3 bolsas de ancho, bien alineadas.","Suba fila por fila, cuidando que todas miren al frente.","Pare a la altura del hombro.","Ponga el aviso arriba, a la vista desde el pasillo."],e:["Torre más alta que la persona","Mezclar marcas en la misma torre","Dejarla en medio del paso de los carros"]},en:{t:"Tower",tag:"Small space",w:"When floor space is tight: pillars, corners and checkouts.",m:["Firm base","Bags or bundles","Brand sign"],s:["Place the tower next to a visible pillar or corner.","Build 3 bags wide, well aligned.","Go up row by row, keeping every bag facing front.","Stop at shoulder height.","Put the sign on top, visible from the aisle."],e:["Tower taller than a person","Mixing brands in the same tower","Leaving it in the trolley path"]}},
+{id:"gondola",img:"img/punta-gondola.jpg",es:{t:"Punta de góndola",tag:"La más vendedora",w:"La cabecera del pasillo: el sitio que todos ven.",m:["Cabecera negociada con la tienda","Bolsas de Super Arroz","Cabezote con logo Distrileco","Cenefa o franja de color"],s:["Acuerde con el administrador el espacio y las fechas.","Limpie bien los entrepaños.","Llene de abajo hacia arriba, todo frenteado.","El nivel de los ojos con la mayor cantidad de frentes.","Instale el cabezote y revise que se lea desde lejos."],e:["Dejar productos de otras categorías en la punta","Cabecera medio vacía","Cabezote roto o desteñido"]},en:{t:"End cap",tag:"Top seller",w:"The head of the aisle: the spot everyone sees.",m:["End cap agreed with the store","Super Arroz bags","Header with Distrileco logo","Color shelf strip"],s:["Agree on the space and dates with the store manager.","Clean the shelves well.","Fill from bottom to top, all faced.","Give eye level the most facings.","Install the header and check it reads from afar."],e:["Leaving other categories on the end cap","Half-empty end cap","Torn or faded header"]}},
+{id:"isla",img:"img/isla.jpg",es:{t:"Isla",tag:"360 grados",w:"En el centro del local, se ve desde todos los lados.",m:["Mesa, estiba o tarima baja","Bolsas de Super Arroz","Aviso de pie"],s:["Ponga la isla donde el cliente pueda rodearla.","Organice filas rectas con las bolsas de frente en cada lado.","Las filas de atrás un poco más altas que las de adelante.","Ponga el aviso en el centro, alto.","Reponga primero la fila de adelante."],e:["Isla pegada a la pared (pierde la gracia)","Bolsas tiradas sin orden","Tapar el paso de los clientes"]},en:{t:"Island",tag:"360 degrees",w:"In the middle of the store, seen from every side.",m:["Table, pallet or low platform","Super Arroz bags","Standing sign"],s:["Place the island where shoppers can walk around it.","Build straight rows with bags facing out on each side.","Back rows slightly higher than front rows.","Put the sign in the center, up high.","Restock the front row first."],e:["Island against the wall (loses the point)","Bags dumped in no order","Blocking the shoppers' path"]}},
+{id:"trono",img:"img/trono.jpg",es:{t:"Trono de pacas",tag:"Volumen",w:"Para mostrar abundancia: quincenas, temporada y mayoristas.",m:["Estiba","Pacas de Super Arroz 25 × 500 g","Aviso de marca"],s:["Ponga la estiba plana y limpia.","Base de 4 pacas, con la cara de la marca hacia el pasillo.","Suba en escalera: 3, 2 y 1 paca, centradas.","No pase de la altura del hombro.","Deje una paca abierta abajo para que tomen bolsas sueltas si la tienda lo permite."],e:["Pacas rotas o con bolsas reventadas","Escalera torcida","Pacas directo sobre el piso mojado"]},en:{t:"Bundle throne",tag:"Volume",w:"To show abundance: paydays, seasons and wholesalers.",m:["Pallet","Super Arroz bundles 25 × 500 g","Brand sign"],s:["Lay a flat, clean pallet.","Base of 4 bundles, brand side facing the aisle.","Step up: 3, 2 and 1 bundle, centered.","Don't go above shoulder height.","Leave one bundle open at the bottom for single bags if the store allows."],e:["Torn bundles or burst bags","Crooked steps","Bundles straight on a wet floor"]}},
+{id:"cruzada",img:"img/cruzada-proleche.jpg",es:{t:"Exhibición cruzada",tag:"Recetas",w:"Juntar productos que se usan en la misma receta.",m:["Super Arroz","Leche Proleche (también la distribuye Distrileco)","Aviso con la receta: arroz con leche"],s:["Escoja una receta de temporada: arroz con leche en diciembre.","Ponga el Super Arroz al lado de la leche, en el mismo nivel.","Coloque el aviso con el nombre de la receta.","Reponga los dos productos por igual.","Cambie la receta según la fecha."],e:["Juntar productos que no tienen nada que ver","Que se acabe uno y quede solo el otro","Avisos viejos de otra temporada"]},en:{t:"Cross display",tag:"Recipes",w:"Group products used in the same recipe.",m:["Super Arroz","Proleche milk (also distributed by Distrileco)","Recipe sign: rice pudding"],s:["Pick a seasonal recipe: rice pudding in December.","Place Super Arroz next to the milk, on the same level.","Add the sign with the recipe name.","Restock both products equally.","Change the recipe with the season."],e:["Grouping unrelated products","One runs out and only the other is left","Old signs from another season"]}}
+];
+const SPECS={es:[["500 g","bolsa"],["25","bolsas por paca"],["12,5 kg","por paca"],["Grano largo","extrafino"]],en:[["500 g","bag"],["25","bags per bundle"],["12.5 kg","per bundle"],["Long grain","extra fine"]]};
+const SA={es:["Llegue y salude al administrador; pregunte cómo se movió el Super Arroz.","Revise fechas: saque adelante las bolsas más viejas.","Retire bolsas rotas o abiertas y anótelas como avería.","Frentee: todas las bolsas con el logo y el \"500 g\" hacia el cliente.","Llene los huecos con bodega; si no hay, reporte el agotado.","Ubique el Super Arroz a la altura de los ojos y en bloque.","Si hay espacio de piso, arme pirámide, torre o trono.","Tome la foto del después desde el pasillo, de frente."],en:["Arrive and greet the manager; ask how Super Arroz has moved.","Check dates: bring the oldest bags to the front.","Remove torn or open bags and log them as damage.","Face: every bag with the logo and \"500 g\" toward the shopper.","Fill gaps from the stockroom; if there's none, report the stock-out.","Place Super Arroz at eye level and in a block.","If there's floor space, build a pyramid, tower or throne.","Take the after photo from the aisle, straight on."]};
+const CAL=[
+{m:[0,1],es:["Ene – Feb","Regreso a clases","Familias reorganizan el mercado: torres y pacas a la vista."],en:["Jan – Feb","Back to school","Families restock the pantry: towers and bundles in sight."]},
+{m:[2,3],es:["Mar – Abr","Semana Santa","Más cocina en casa: arroz en punta de góndola."],en:["Mar – Apr","Holy Week","More home cooking: rice on the end cap."]},
+{m:[4],es:["Mayo","Día de la Madre","Exhibición cruzada con recetas para mamá."],en:["May","Mother's Day","Cross display with recipes for mom."]},
+{m:[5,6],es:["Jun – Jul","Prima de mitad de año","Más plata en la calle: tronos de pacas."],en:["Jun – Jul","Mid-year bonus","More money around: bundle thrones."]},
+{m:[8],es:["Septiembre","Amor y Amistad","Islas con combos y avisos de color."],en:["September","Love & Friendship","Islands with combos and colorful signs."]},
+{m:[10,11],es:["Nov – Dic","Navidad y fin de año","Arroz con leche: Super Arroz + Proleche. La temporada más fuerte."],en:["Nov – Dec","Christmas & year end","Rice pudding: Super Arroz + Proleche. The strongest season."]},
+{m:[-1],es:["Cada 15 y 30","Quincenas","Refuerce la exhibición dos días antes de pago."],en:["Every 15th & 30th","Paydays","Boost the display two days before payday."]}
+];
+const CHK={es:["Super Arroz a la altura de los ojos","Todo frenteado, logo hacia el cliente","Sin huecos en el estante","Lo más viejo adelante (PEPS)","Sin bolsas rotas ni abiertas","Estante limpio","Precio visible","Producto en bloque, no regado","Exhibición adicional (pirámide, torre o isla)","Aviso de marca en buen estado"],en:["Super Arroz at eye level","All faced, logo to the shopper","No gaps on the shelf","Oldest in front (FIFO)","No torn or open bags","Clean shelf","Price visible","Product in a block, not scattered","Extra display (pyramid, tower or island)","Brand sign in good condition"]};
+const QUIZ=[
+{es:["Llega a la tienda y ve bolsas de Super Arroz con fecha más vieja atrás. ¿Qué hace?",["Las deja así","Las pasa adelante y pone las nuevas atrás","Las devuelve a bodega"],1,"Primero lo que vence primero: lo viejo adelante."],en:["You find older-dated Super Arroz bags at the back. What do you do?",["Leave them","Move them to the front, new ones behind","Send them back to storage"],1,"First to expire, first out: older stock in front."]},
+{es:["¿Cuál es el mejor nivel del estante para Super Arroz?",["A la altura de los ojos","Abajo, cerca del piso","Arriba de todo"],0,"Lo que se ve primero, se vende primero."],en:["What's the best shelf level for Super Arroz?",["Eye level","Bottom, near the floor","Very top"],0,"What's seen first sells first."]},
+{es:["Tiene poco espacio de piso junto a una columna. ¿Qué montaje usa?",["Isla","Torre","Pirámide grande"],1,"La torre aprovecha la altura en poco espacio."],en:["Little floor space next to a pillar. Which display?",["Island","Tower","Large pyramid"],1,"A tower uses height in a small space."]},
+{es:["Encuentra una bolsa rota en la exhibición. ¿Qué hace?",["La tapa con otra bolsa","La retira y la reporta como avería","La deja atrás"],1,"Lo averiado se retira y se reporta siempre."],en:["You find a torn bag in the display. What do you do?",["Hide it behind another bag","Remove it and report it as damage","Leave it at the back"],1,"Damaged units are always removed and reported."]},
+{es:["En diciembre, ¿con qué producto cruza el Super Arroz?",["Con detergente","Con leche Proleche para el arroz con leche","Con gaseosa"],1,"Exhibición cruzada: productos de la misma receta."],en:["In December, what do you cross Super Arroz with?",["Detergent","Proleche milk for rice pudding","Soda"],1,"Cross display: products from the same recipe."]},
+{es:["¿Hasta qué altura se arma una pirámide o trono?",["Hasta el techo","Hasta el hombro","Lo más alto posible"],1,"Firme y seguro: nunca más alto que el hombro."],en:["How high should a pyramid or throne go?",["Up to the ceiling","Up to shoulder height","As high as possible"],1,"Stable and safe: never above shoulder height."]}
+];
+
+let L=localStorage.getItem('exl')||'es';
+let learned=JSON.parse(localStorage.getItem('exlearned')||'[]');
+const $=s=>document.querySelector(s);
+function t(k){return T[L][k]}
+function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),2400)}
+function saveL(){localStorage.setItem('exlearned',JSON.stringify(learned))}
+function total(){return RULES.length+DISP.length}
+function prog(){const n=learned.length;$('#pbar').style.width=(n/total()*100)+'%';$('#ptxt').textContent=t('progress')(n,total())}
+function render(){
+  document.documentElement.lang=L;
+  document.querySelectorAll('[data-i]').forEach(e=>{const v=t(e.dataset.i);if(typeof v==='string')e.textContent=v});
+  $('#les').classList.toggle('on',L==='es');$('#len').classList.toggle('on',L==='en');
+  const mq=t('marq').map(x=>`<span>${x}</span>`).join('');$('#marq').innerHTML=mq+mq;
+  $('#rules').innerHTML=RULES.map((r,i)=>{const d=learned.includes('r'+i);return `<div class="rule reveal in ${d?'done':''}" data-k="r${i}"><span class="num">${i+1}</span><h3>${r[L][0]}</h3><p>${r[L][1]}</p><span class="ok">${d?t('done'):t('tap')}</span></div>`}).join('');
+  document.querySelectorAll('.rule').forEach(el=>el.onclick=()=>toggleL(el.dataset.k));
+  $('#lvls').innerHTML=LVLS[L].map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('');
+  $('#disp').innerHTML=DISP.map((d,i)=>{const c=d[L];const k='d'+i;return `<div class="card reveal in"><div class="ph"><img src="${d.img}" alt="${c.t}" loading="lazy"><span class="tag">${learned.includes(k)?t('done'):c.tag}</span></div><div class="bd"><h3>${c.t}</h3><p class="when">${c.w}</p><button class="open" data-i2="${i}">${t('open')}</button></div></div>`}).join('');
+  document.querySelectorAll('[data-i2]').forEach(b=>b.onclick=()=>openD(+b.dataset.i2));
+  $('#specs').innerHTML=SPECS[L].map(s=>`<div><b>${s[0]}</b><small>${s[1]}</small></div>`).join('');
+  $('#saSteps').innerHTML=SA[L].map(s=>`<li>${s}</li>`).join('');
+  const mo=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Bogota'})).getMonth();
+  $('#cal').innerHTML=CAL.map(c=>{const now=c.m.includes(mo);const x=c[L];return `<div class="ev ${now?'now':''}"><span class="badge">${t('now')}</span><div class="m">${x[0]}</div><h3>${x[1]}</h3><p>${x[2]}</p></div>`}).join('');
+  renderChk();renderHist();quizStart();prog();
+}
+function toggleL(k){learned=learned.includes(k)?learned.filter(x=>x!==k):[...learned,k];saveL();render()}
+function openD(i){
+  const d=DISP[i],c=d[L],k='d'+i;
+  $('#sheet').innerHTML=`<button class="close" onclick="closeD()">×</button><div class="ph"><img src="${d.img}" alt="${c.t}"></div><div class="in"><h3>${c.t}</h3><p class="when" style="color:#666;font-weight:600">${c.w}</p><h4>${t('mat')}</h4>${c.m.map(x=>`<span class="pill">${x}</span>`).join('')}<h4>${t('steps')}</h4><ol>${c.s.map(x=>`<li>${x}</li>`).join('')}</ol><h4>${t('errs')}</h4>${c.e.map(x=>`<div class="err">${x}</div>`).join('')}<button class="learned" id="lb">${learned.includes(k)?t('done'):t('learned')}</button></div>`;
+  $('#lb').onclick=()=>{if(!learned.includes(k)){learned.push(k);saveL()}closeD();render();toast(t('done'))};
+  $('#modal').classList.add('on');document.body.style.overflow='hidden';
+}
+function closeD(){$('#modal').classList.remove('on');document.body.style.overflow=''}
+$('#modal').onclick=e=>{if(e.target.id==='modal')closeD()};
+// checklist
+let chk=JSON.parse(localStorage.getItem('exchk')||'[]');
+function renderChk(){
+  $('#chkList').innerHTML=CHK[L].map((x,i)=>`<label class="chk"><input type="checkbox" data-c="${i}" ${chk.includes(i)?'checked':''}>${x}</label>`).join('');
+  document.querySelectorAll('[data-c]').forEach(c=>c.onchange=()=>{const i=+c.dataset.c;chk=c.checked?[...chk,i]:chk.filter(x=>x!==i);localStorage.setItem('exchk',JSON.stringify(chk));score()});
+  score();
+}
+function score(){const n=chk.length;$('#score').textContent=n+'/10';$('#scoreTxt').textContent=n>=9?t('great'):n>=6?t('mid'):t('low')}
+document.querySelectorAll('.shot input').forEach(inp=>inp.onchange=()=>{const f=inp.files[0];if(!f)return;const im=$('#'+inp.dataset.t);im.src=URL.createObjectURL(f);im.hidden=false});
+function now(){return new Date().toLocaleString(L==='es'?'es-CO':'en-US',{timeZone:'America/Bogota',dateStyle:'medium',timeStyle:'short'})}
+$('#btnWa').onclick=()=>{
+  const ti=$('#fTienda').value.trim();if(!ti){toast(t('need'));$('#fTienda').focus();return}
+  const ok=CHK[L].map((x,i)=>(chk.includes(i)?'[OK] ':'[--] ')+x).join('\n');
+  const head=L==='es'?'REPORTE DE EXHIBICIÓN - DISTRILECO':'DISPLAY REPORT - DISTRILECO';
+  const msg=`${head}\n${now()} (hora Colombia)\n${ti}${$('#fLugar').value?' - '+$('#fLugar').value:''}\n${L==='es'?'Puntaje':'Score'}: ${chk.length}/10\n\n${ok}\n\n${L==='es'?'Novedades':'Notes'}: ${$('#fNotas').value||'-'}\n\n${L==='es'?'(Adjunto fotos antes y después)':'(Before/after photos attached)'}`;
+  let num=$('#fSup').value.replace(/\D/g,'');if(num.length===10)num='57'+num;
+  const h=JSON.parse(localStorage.getItem('exhist')||'[]');h.unshift({ti,s:chk.length,f:now()});localStorage.setItem('exhist',JSON.stringify(h.slice(0,10)));renderHist();
+  window.open('https://wa.me/'+num+'?text='+encodeURIComponent(msg),'_blank');
+};
+$('#btnReset').onclick=()=>{chk=[];localStorage.setItem('exchk','[]');['#fTienda','#fLugar','#fNotas'].forEach(s=>$(s).value='');['#imgA','#imgD'].forEach(s=>{$(s).hidden=true;$(s).removeAttribute('src')});renderChk();toast(t('new'))};
+function renderHist(){const h=JSON.parse(localStorage.getItem('exhist')||'[]');$('#hist').innerHTML=h.length?`<b>${t('hist')}</b>`+h.map(x=>`<div><span>${x.ti.replace(/[<>&]/g,'')}</span><span>${x.s}/10 · ${x.f}</span></div>`).join(''):''}
+// quiz
+let qi=0,qs=0;
+function quizStart(){qi=0;qs=0;showQ()}
+function showQ(){
+  const box=$('#quiz');
+  if(qi>=QUIZ.length){const m=t('resMsg')[qs<=2?0:qs<=4?1:2];box.innerHTML=`<p class="qn">${t('res')(qs,QUIZ.length)}</p><p class="q">${m}</p><button class="next" style="display:inline-block" id="qa">${t('again')}</button>`;$('#qa').onclick=quizStart;return}
+  const q=QUIZ[qi][L];
+  box.innerHTML=`<p class="qn">${t('qOf')(qi+1,QUIZ.length)}</p><p class="q">${q[0]}</p>${q[1].map((o,i)=>`<button class="opt" data-o="${i}">${o}</button>`).join('')}<div class="exp" id="exp">${q[3]}</div><button class="next" id="qn">${t('next')}</button>`;
+  document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+    if(box.dataset.lock==='1')return;box.dataset.lock='1';
+    const i=+b.dataset.o;if(i===q[2])qs++;
+    document.querySelectorAll('.opt').forEach(x=>{if(+x.dataset.o===q[2])x.classList.add('good');else if(x===b)x.classList.add('bad')});
+    $('#exp').style.display='block';$('#qn').style.display='inline-block';
+  });
+  box.dataset.lock='0';$('#qn').onclick=()=>{qi++;showQ()};
+}
+// counters, reveal, chips
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');if(e.target.classList.contains('count')){let n=0,to=+e.target.dataset.to;const iv=setInterval(()=>{e.target.textContent=++n;if(n>=to)clearInterval(iv)},90)}io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal,.count').forEach(e=>io.observe(e));
+const secs=[...document.querySelectorAll('section[id]')];
+window.addEventListener('scroll',()=>{let cur='';secs.forEach(s=>{if(scrollY>=s.offsetTop-140)cur=s.id});document.querySelectorAll('#chips a').forEach(a=>{const on=a.getAttribute('href')==='#'+cur;a.classList.toggle('on',on);if(on)a.scrollIntoView({inline:'center',block:'nearest'})})},{passive:true});
+$('#les').onclick=()=>{L='es';localStorage.setItem('exl',L);render()};
+$('#len').onclick=()=>{L='en';localStorage.setItem('exl',L);render()};
+function clock(){$('#clock').textContent=(L==='es'?'Hora Colombia: ':'Colombia time: ')+now()}
+setInterval(clock,30000);
+// PWA
+let dp;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;$('#btnInstall').style.display='inline-block'});
+$('#btnInstall').onclick=async()=>{if(!dp)return;dp.prompt();await dp.userChoice;dp=null;$('#btnInstall').style.display='none'};
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js');
+render();clock();
+</script>
+</body>
+</html>
